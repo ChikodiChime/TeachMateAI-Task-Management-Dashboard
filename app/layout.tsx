@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import NextTopLoader from 'nextjs-toploader';
-import { Nunito } from "next/font/google";
+import { Mulish } from "next/font/google";
 import "./globals.css";
 import SIdebar from "./Components/SIdebar/SIdebar";
 import GlobalStyleProvider from "./providers/GlobalStyleProvider";
 import ContextProvider from "./providers/ContextProvider";
 import { ClerkProvider, auth } from '@clerk/nextjs'
 
-const nunito = Nunito({ 
+const mulish = Mulish({ 
   weight: ["400","500","600","700", "800"],
   subsets: ["latin"] });
 
@@ -29,10 +29,10 @@ export default function RootLayout({
         <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
         </head>
-        <body className={nunito.className}>
+        <body className={mulish.className}>
           <NextTopLoader
           height={2}
-          color="#27AE60"
+          color="#fca311"
           easing="cubic-bezier(.53, 0.21, 0, 1)"
           />
           <ContextProvider>

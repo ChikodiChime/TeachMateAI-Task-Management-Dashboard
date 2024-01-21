@@ -5,8 +5,8 @@ import styled from 'styled-components';
 interface Props{
     children: React.ReactNode;
 }
-// @ts-ignore
-function GlobalStyleProvider({ children }) {
+
+function GlobalStyleProvider({ children }: Props) {
   return (
     <GlobalStyles>
         {children}
@@ -19,6 +19,12 @@ const GlobalStyles = styled.div`
     display: flex;
     gap: 2.5rem;
     height: 100%;
+
+    @media screen and (max-width: 768px){
+      padding: 1rem;
+      gap: 1rem;
+      transition: all .3s ease-in-out;
+    }
 
     .grid{
       display: grid;

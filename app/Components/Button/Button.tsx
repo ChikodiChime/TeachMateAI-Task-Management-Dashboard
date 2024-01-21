@@ -15,9 +15,10 @@ interface Props {
     click?: () => void;
     type?: "submit" | "button" | "reset" | undefined;
     border?: string;
+    color?: string
 }
 
-function Button({ icon, name, background, padding, borderRad, fw, fs, click, type, border }: Props) {
+function Button({ icon, name, background, padding, borderRad, fw, fs, click, type, border, color }: Props) {
     const {theme} = useGlobalState();
    
     return (
@@ -29,7 +30,8 @@ function Button({ icon, name, background, padding, borderRad, fw, fs, click, typ
             borderRadius: borderRad || "0.5rem",
             fontWeight: fw || "500",
             fontSize: fs,
-            border: border
+            border: border,
+            color:color || theme.colorGrey0
 
         }}
         theme = { theme }
@@ -45,7 +47,7 @@ const ButtonStyled = styled.button`
     position: relative;
     display: flex;
     align-items: center;
-    color: ${(props) => props.theme.colorGrey2};
+    color: ${(props) => props.theme.colorWhite};
     z-index: 5;
     cursor: pointer;
     transition: all .5s ease-in-out;

@@ -15,19 +15,33 @@ interface Props {
 
 
 function TaskItem({ title, description, date, isCompleted, id}: Props ) {
-    const {theme, deleteTask} = useGlobalState();
+    const {theme, deleteTask, updateTask} = useGlobalState();
     return (
         <TaskItemStyled theme={theme}>
             <h2>{title}</h2>
             <p>{description}</p>
+
             <p className='date'>
+                <span className='text-sm font-extrabold text-[#fca311]'>Due Date:</span> <br />
                 {formatDate(date)}
             </p>
             <div className="task-footer">
                 {isCompleted ? (
-                    <button className='completed'>Completed</button>
+                    <button className='completed' onClick={() => {
+                        const task = {
+                            id,
+                            isCompleted: !isCompleted,
+                        }
+                        updateTask(task)
+                    }}>Completed</button>
                     ):(
-                    <button className='incomplete'>Incomplete</button>
+                    <button className='incomplete' onClick={() => {
+                        const task = {
+                            id,
+                            isCompleted: !isCompleted,
+                        }
+                        updateTask(task)
+                    }}>Incomplete</button>
                     )}
                     <button className="edit">
                         {edit}
@@ -48,7 +62,7 @@ const TaskItemStyled = styled.div`
     padding: 1.2rem 1rem;
     border-radius: 1rem;
     background-color: ${(props) => props.theme.borderColor2};
-    box-shadow: ${(props) => props.theme.shadow7};
+    box-shadow: ${(props) => props.theme.shadow3};
     border: 2px solid ${(props) => props.theme.borderColor2};
 
     height: 16rem;
@@ -60,9 +74,9 @@ const TaskItemStyled = styled.div`
         margin-top: auto;
     }
 
-    >h1{
+    >h2{
         font-size: 1.5rem;
-        font-weight: 600;
+        font-weight: 800;
     }
 
     .task-footer{
@@ -89,11 +103,12 @@ const TaskItemStyled = styled.div`
     .completed, .incomplete{
         display: inline-block;
         padding: 0.4rem 1rem;
-        background: ${(props) => props.theme.colorDanger};
+        color: ${(props) => props.theme.colorTextPrimary};
+        background: ${(props) => props.theme.colorOrangeDark};
         border-radius: 30px;
     }
     .completed{
-        background: ${(props) => props.theme.colorPrimary};
+        background: ${(props) => props.theme.colorGreenDark};
     }
 `
 

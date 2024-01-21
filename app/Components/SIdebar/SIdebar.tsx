@@ -8,9 +8,10 @@ import menu  from '@/app/utils/menu'
 import { usePathname, useRouter } from 'next/navigation';
 import Button from '../Button/Button';
 import { UserButton, useClerk, useUser } from '@clerk/nextjs';
-import { logout } from '@/app/utils/Icons';
+import { arrowLeft, bars, logout } from '@/app/utils/Icons';
+import { transform } from 'next/dist/build/swc';
 function SIdebar() {
-    const {theme} = useGlobalState()
+    const {theme, collapsed, collapseMenu} = useGlobalState()
     const { signOut } = useClerk();
     const {user} = useUser();
 
@@ -24,7 +25,10 @@ function SIdebar() {
     }
    
   return (
-    <SidebarStyled theme={theme}>
+    <SidebarStyled theme={theme} collapsed = {collapsed}>
+      <button className="toggle-nav" onClick={collapseMenu}>
+        {collapsed ? bars : arrowLeft}
+      </button>
       <div className="profile">
         <div className="profile-overlay"></div>
         <div className="image">
@@ -62,7 +66,7 @@ function SIdebar() {
           );
         })}
       </ul>
-      <div className="sign-out relative mb-[1.5rem]">
+      <div className="sign-out relative ml-6 mb-[1.5rem]">
         <Button
           name= {"Sign Out"}
           type= {"submit" }
@@ -70,6 +74,7 @@ function SIdebar() {
           borderRad= {"0.8rem"}
           fw= {"500"}
           fs= {"1.2rem"}
+          color='black'
           icon= {logout}
           click={() => {
             signOut(() => router.push("/signin"))
@@ -80,19 +85,50 @@ function SIdebar() {
   )
 }
 
-const SidebarStyled = styled.nav`
+const SidebarStyled = styled.nav<{collapsed: boolean}>`
   position: relative;
   width: ${(props) => props.theme.sidebarWidth};
-  background-color: ${(props) => props.theme.colorBg2};
+  background-color: ${(props) => props.theme.colorOrangeDark};
   border: 2px solid ${(props) => props.theme.borderColor2};
   border-radius: 1rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  
+  color: ${(props) => props.theme.colorTextPrimary};
 
-  color: ${(props) => props.theme.colorGrey3};
+  
+  .toggle-nav{
+    display: none;
+    position: absolute;
+    right: -40px;
+    top: 2.8rem;
+    padding: 0.8rem .9rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    border-right: 2px solid ${(props) => props.theme.borderColor2};
+    border-bottom: 2px solid ${(props) => props.theme.borderColor2};
+    border-top: 2px solid ${(props) => props.theme.borderColor2};
+
+    background-color: ${(props) => props.theme.colorOrangeDark};
+  }
+  @media screen and (max-width: 768px){
+      position: fixed;
+      height: calc(100vh - 2rem);
+      z-index: 10;
+
+      /* transition: all .3s cubic-bezier(0.53, 0.21, 0, 1); */
+      transform: ${(props) => props.collapsed ? "translateX(-107%)" : "translateX(0)"};
+      
+      .toggle-nav{
+        display: block;
+      }
+     
+    }
+
+  
 
   .user-btn{
       .cl-rootBox{
@@ -121,9 +157,10 @@ const SidebarStyled = styled.nav`
     cursor: pointer;
 
     font-weight: 500;
-    color: ${(props) => props.theme.colorGrey0};
+    color: ${(props) => props.theme.colorBlueDark};
     display: flex;
     align-items: center;
+    justify-content: center;
 
    
 
@@ -147,8 +184,9 @@ const SidebarStyled = styled.nav`
       font-size: 1.2rem;
       display: flex;
       flex-direction: column;
-
+      overflow: hidden;
       line-height: 1;
+      font-weight: 700;
     }
 
     .image, h1{
@@ -175,14 +213,14 @@ const SidebarStyled = styled.nav`
 
     >h1{
       margin-left: .8rem;
-      font-size: clamp(1.2rem, 4vw, 1.4rem);
+      font-size: clamp(1rem, 3vw, 1.4rem);
       line-height: 100%;
     }
 
 
     &:hover{
       .profile-overlay{
-        opacity: 1;
+        opacity: .5;
         border: 2px solid ${(props) => props.theme.borderColor2};
       }
 
@@ -224,7 +262,7 @@ const SidebarStyled = styled.nav`
       width: 0%;
       height: 100%;
       z-index: 1;
-      background-color: ${(props) => props.theme.colorGreenDark};
+      background-color: ${(props) => props.theme.colorBlueDark};
      
       border-bottom-left-radius: 5px;
       border-top-left-radius: 5px;
@@ -240,10 +278,11 @@ const SidebarStyled = styled.nav`
     i{
       display: flex;
       align-items: center;
-      color: ${(props) => props.theme.colorIcons};
+      color: ${(props) => props.theme.colorBlueDark};
     }
 
     &:hover{
+      
       &::after {
         width: 100%;
       }

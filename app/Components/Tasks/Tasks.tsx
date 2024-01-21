@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import CreateContent from '../Modals/CreateContent';
 import TaskItem from '../TaskItem/TaskItem';
 import { plus } from '@/app/utils/Icons';
+import Modal from '../Modals/Modal';
+import Image from 'next/image';
 
 interface Props {
   title: string;
@@ -13,15 +15,28 @@ interface Props {
 }
 
 function Tasks({title, tasks}: Props) {
-    const { theme, isLoading } = useGlobalState();
+    const { theme, openModal, modal } = useGlobalState();
 
 
 
   return (
     <TaskStyled theme={theme}>
+      {modal && <Modal content= {<CreateContent/>}/>}
+      <div className="flex flex-row gap-3 mb-10">
+      <Image 
+            width={40} 
+            height={40} 
+            layout='fixed'  
+            src='/logo.png'
+            alt='logo'
+            style={{ width: '40px', height: '40px', objectFit: 'cover' }}
+
+            />
+            <span className='text-3xl font-bold text-[#14213d]'>TeachMateAI</span>
+      </div>
       <h1>{title}</h1>
+
       
-      {!isLoading ?(
         <div className="tasks grid">
         {tasks.map((task) => (
           <TaskItem 
@@ -34,15 +49,13 @@ function Tasks({title, tasks}: Props) {
           
           />
         ))}
-        <button className="create-task">
+        <button className="create-task" onClick={openModal}>
           {plus}
           Add New Task
         </button>
-      </div>) : (
-      <div className='tasks-loader w-full h-full flex items-center justify-center'>
-        <span className="loader"></span>
       </div>
-    )}
+      
+    
       
     </TaskStyled>
   )
@@ -68,6 +81,7 @@ const TaskStyled = styled.main`
       font-size: clamp(1.5rem, 2vw, 2rem);
       font-weight: 800;
       position: relative;
+      color: ${(props) => props.theme.colorBlueDark};
 
       &::after {
         content: "";
@@ -76,7 +90,7 @@ const TaskStyled = styled.main`
         left: 0;
         width: 3rem;
         height: 0.2rem;
-        background-color: ${(props) => props.theme.colorPrimaryGreen};
+        background-color: ${(props) => props.theme.colorOrangeDark};
         border-radius: 0.5rem;
       }
     }
