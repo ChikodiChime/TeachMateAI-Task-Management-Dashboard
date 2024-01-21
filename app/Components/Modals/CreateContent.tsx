@@ -90,7 +90,7 @@ function CreateContent() {
         </div>
 
         <div className="input-control">
-            <label htmlFor="date">Date</label>
+            <label htmlFor="date">Due Date</label>
             <input type="date"
                 id='date'
                 value={date}
