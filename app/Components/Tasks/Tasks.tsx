@@ -110,7 +110,7 @@ const TaskStyled = styled.main`
 
       &:hover{
       
-        background-color:  ${(props) => props.theme.colorGrey5};
+        background-color:  ${(props) => props.theme.colorBlueDark};
         color: ${(props) => props.theme.colorGrey1};
       }
     }

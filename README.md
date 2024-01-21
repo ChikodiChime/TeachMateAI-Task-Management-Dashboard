@@ -1,6 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+
+
+
+## Getting Started - How to Run the App
 
 First, run the development server:
 
@@ -13,24 +15,31 @@ pnpm dev
 # or
 bun dev
 ```
+Then, on another terminal, run"
+```bash
+npx prisma studio
+```
+In ortder to gain access to the Database
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Dependencies Used
+Using Nextjs and ReactJjs to build this project, I used the following 
+    -@clerk/nextjs      - for User authentication and management
+    -@prisma/client     - For database access
+    -axios              - for making API requests
+    -moment             - for handling date and time
+    -next               - for building react applications with server-side rendering
+    -nextjs-toploader   - for handling the loading indicator
+    -prisma             - db toolkit for typescript and node
+    -react              - for building user interfaces
+    -react-dom          - for working with react DOM
+    -react-hot-toast    - FOR NOTIFICATIONS
+    -styled-components  - FOR STYLING
+    -tailwindcss        - For styling
+   
+  
+  ## DESIGN Choices
+ I chose something simple yet eye-catching. TeachMateAI is a platform designed for schools, necessitating a straightforward and easily comprehensible user interface (UI). The dashboard's design incorporates the main colors, orange and dark blue. Each task is prominently displayed on the dashboard immediately after creation.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For task management, I opted for a straightforward approach by using task statuses - completed and incomplete. Additionally, users have the option to toggle the 'Importance' of a task when creating it. To enhance usability, I implemented tabs that facilitate the filtering of tasks, providing separate views for completed, incomplete, and important tasks.

@@ -43,7 +43,7 @@ const ModalStyled = styled.div`
         filter: blur(4px);
     }
     .modal-content{
-        padding: 2rem;
+        padding: 1rem 2rem;
         position: relative;
         max-width: 630px;
         width: 100%;

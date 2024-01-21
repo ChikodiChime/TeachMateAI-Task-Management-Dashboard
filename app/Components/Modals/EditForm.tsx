@@ -78,7 +78,7 @@ function CreateContent() {
         </div>
 
         <div className="input-control">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">description</label>
             <textarea
             id='description'
             value={description}
@@ -131,7 +131,7 @@ function CreateContent() {
             borderRad={'0.8rem'}
             fw={'500'}
             fs={'1.2rem'}
-            background={'#fca311'}
+            background={'purple'}
 
             />
         </div>
@@ -143,23 +143,20 @@ const CreateContentStyled = styled.form`
 >h1{
     font-size: clamp(1.2rem, 5vw, 1.6rem);
     font-weight: 600;
-    color: ${(props) => props.theme.colorOrangeDark};
-    
 
 }
 
+color: ${(props) => props.theme.colorGrey1};
 
 .input-control{
     position: relative;
-    margin: .8rem 0;
+    margin: 1-6rem 0;
     font-weight: 500;
 
     label{
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.8rem;
         display: inline-block;
-        font-size: clamp(0.7rem, 4vw, 1rem);
-        color: black;
-
+        font-size: clamp(0.9rem, 5vw, 1.2rem);
     }
     span{
         color: ${(props) => props.theme.colorGrey3};
@@ -167,7 +164,7 @@ const CreateContentStyled = styled.form`
     }
     input, textarea{
         width: 100%;
-        padding: .8rem;
+        padding: 1rem;
 
         resize: none;
         background-color: ${(props) => props.theme.colorGreyDark};

@@ -60,4 +60,13 @@ input[type='date']::-webkit-calendar-picker-indicator{
       transform: rotate(360deg);
   }
   } 
+  .cl-internal-b3fm6y{
+    display: none;
+  }
+  .cl-internal-1fsg6zy{
+    background-color: #fca311;
+  }
+  .cl-internal-1fsg6zy:hover{
+    background-color: #fdb33d;
+  }
 
